@@ -2,8 +2,7 @@ import random
 print('\nHeeello!! Welcome to my HANGMAN game!\n')
 
 words = ['Cow', 'Chicken', 'Dog', 'Bird', 'Crocodile', 'Snake']
-word = random.choice(words)
-print(word)
+word = random.choice(words).upper()
 
 print('Let\'s begin! Your word to guess the word below in 10 attempts!: \n')
 attempts = 10
@@ -12,22 +11,27 @@ for i in word:
     print(i.replace(i, '_ '), end= ' ')
 print('\n')
 
-while attempts > 0:
+guessed_letters = []
 
-    answer = input('Come on and guess the first letter: ').upper()
+while attempts > 0:
+    answer = input('Guess the letter!: ').upper()
+    guessed_letters.append(answer)
 
     if answer in word:
-        print('Great! Indeed ' + answer + ' is in here!') 
+        print('Good job! ' + answer + ' is in here:')
+        for char in word:
+            if char in guessed_letters:
+                print(char, end = ' ')
+            else:
+                print('_ ', end = ' ')
+        print()
     else:
-        print('Kupsztal... ' + '\'' + answer + '\'' ' is not correct. you have '+ str(attempts - 1)+ ' tries!')
-    attempts = attempts - 1
+        attempts = attempts - 1
+        print('Bah! ' + '\'' + answer + '\'' + ' is not correct. You have ' + str(attempts) + ' more tries!')
 
-#Ok I'm a beginner programmer so 
-
-# for i in word: # Now we make a for loop to iterate through randomly selected word so that user can see how many letters does the word have
-#     print(i.replace(i, '_ '), end = '  ')
-
-# print('\n')
-
-# attempts = 10
+    if set(word) == set(guessed_letters):
+        print('Congrats! You have guessed the word: ', word)
+        break
+if attempts == 0:
+    print('Sorry! you did not manage to guess the word in 10 tries')
 
