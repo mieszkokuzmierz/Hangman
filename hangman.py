@@ -2,7 +2,7 @@ import random
 
 print('\nHeeello!! Welcome to my HANGMAN game!\n')
 
-words = ['Cow', 'Chicken', 'Dog', 'Bird', 'Crocodile', 'Snake']
+words = ['Cow', 'Chicken', 'Dog', 'Bird', 'Crocodile', 'Snake'] #maybe one day to use some existing word database somewhere :)
 word = random.choice(words).upper()
 
 print('Let\'s begin! Your word to guess the word below in 10 attempts!: \n')
@@ -10,7 +10,7 @@ print('Let\'s begin! Your word to guess the word below in 10 attempts!: \n')
 attempts = 10
 guessed_letters = []
 
-display_word = ['_'] * len(word)
+display_word = ['_'] * len(word) # in previous version i used for loop, but think that approach is much more readable. Any pro programmers willing to discuss and broaden my horizons? :))
 print(' '.join(display_word) + '\n')
 
 while attempts > 0:
@@ -18,8 +18,8 @@ while attempts > 0:
     
 
     if guess in guessed_letters:
-        print('You already guessed that letter! Try again.')
-        continue
+        print('You already guessed that letter! Try again.') # making sure no duplicates arrive! Think that was an issue and created a bug in previous version
+        continue # I still have trouble using break/continue operators and tend to forget how useful they are. If i wouldn't use continue here it will just add that letter anyway because of what's stated below lol
 
     guessed_letters.append(guess)
 
